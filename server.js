@@ -74,7 +74,8 @@ const createInsightCardPayload = async (lines) => {
     // Step 1: Remove or replace escape characters
     const correctedUrl = viewUrl.replace(/\\/g, '');
     const decodedUrl = decodeURIComponent(correctedUrl);
-
+    console.log(viewUrl, "viewUrl")
+console.log(decodedUrl, "decodedUrl")
     payload.contents.push(
       {
         type: "title",
