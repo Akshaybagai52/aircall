@@ -65,17 +65,19 @@ const createInsightCardPayload = async (lines) => {
   let payload = {
     contents: [],
   };
+  let emptyUrl = "https://sandbox-nextreleaseuat.fasttrack360.com.au/RecruitmentManager/rm#/RWRpdENhbmRpZGF0ZQ0000/"
   const API_URL = `https://voipy.businessictsydney.com.au/aircall-luke/candidate/${phoneNumber}`;
   try {
     const { data } = await axios.get(API_URL);
     // console.log(data);
     const { name = "N/A", mobile = "N/A", notes = "N/A", viewUrl } = data;
+    if (viewUrl === emptyUrl) return false
 
     // Step 1: Remove or replace escape characters
     const correctedUrl = viewUrl.replace(/\\/g, '');
     const decodedUrl = decodeURIComponent(correctedUrl);
     console.log(viewUrl, "viewUrl")
-console.log(decodedUrl, "decodedUrl")
+    console.log(decodedUrl, "decodedUrl")
     payload.contents.push(
       {
         type: "title",
