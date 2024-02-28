@@ -2,6 +2,7 @@ const request = require("request");
 const express = require("express");
 const { default: axios } = require("axios");
 const app = express();
+require('dotenv').config();
 
 app.use(express.json());
 let phoneNumber;
@@ -35,8 +36,8 @@ app.get("/aircall/calls", (req, res) => {
 });
 
 const sendInsightCard = (callId, payload) => {
-  const API_ID = "9815729164a5a0c14f6d0575ffa70c50";
-  const API_TOKEN = "bdb071758fbad6d5bccb39e326013cd2";
+  const API_ID = process.env.API_ID;
+  const API_TOKEN = process.env.API_TOKEN;
 
   const uri = `https://${API_ID}:${API_TOKEN}@api.aircall.io/v1/calls/${callId}/insight_cards`;
 
