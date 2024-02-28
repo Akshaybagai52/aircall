@@ -71,7 +71,9 @@ const createInsightCardPayload = async (lines) => {
     const { data } = await axios.get(API_URL);
     // console.log(data);
     const { name = "N/A", mobile = "N/A", notes = "N/A", viewUrl } = data;
-    if (viewUrl === emptyUrl) return false
+    if (viewUrl === emptyUrl) {
+      throw new Error('View URL is empty'); // Throw an error if viewUrl is empty
+   }
 
     // Step 1: Remove or replace escape characters
     const correctedUrl = viewUrl.replace(/\\/g, '');
