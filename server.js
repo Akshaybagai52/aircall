@@ -35,8 +35,8 @@ app.get("/aircall/calls", (req, res) => {
 });
 
 const sendInsightCard = (callId, payload) => {
-  const API_ID = "a6caaf06ff64165cd43ae294e2198ea0";
-  const API_TOKEN = "6b8934a7422353ebae48e818912136d2";
+  const API_ID = "9815729164a5a0c14f6d0575ffa70c50";
+  const API_TOKEN = "bdb071758fbad6d5bccb39e326013cd2";
 
   const uri = `https://${API_ID}:${API_TOKEN}@api.aircall.io/v1/calls/${callId}/insight_cards`;
 
