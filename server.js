@@ -69,12 +69,17 @@ const createInsightCardPayload = async (lines) => {
   try {
     const { data } = await axios.get(API_URL);
     // console.log(data);
-    const { name = "N/A", mobile = "N/A", notes = "N/A", viewUrl  } = data;
+    const { name = "N/A", mobile = "N/A", notes = "N/A", viewUrl } = data;
+
+    // Step 1: Remove or replace escape characters
+    const correctedUrl = viewUrl.replace(/\\/g, '');
+    const decodedUrl = decodeURIComponent(correctedUrl);
+
     payload.contents.push(
       {
         type: "title",
         text: "View Detials",
-        link: viewUrl || "N/A",
+        link: decodedUrl || "N/A",
       },
       {
         type: "shortText",
@@ -100,7 +105,7 @@ const createInsightCardPayload = async (lines) => {
       },
     );
   }
-  
+
   return payload;
 };
 
